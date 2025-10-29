@@ -13,4 +13,6 @@ export function getLotto(purchaseAmount) {
     const numbers = lotto.getNumbers();
     Console.print(`[${numbers.join(', ')}]`);
   })
+
+  return lottoArray;
 }
