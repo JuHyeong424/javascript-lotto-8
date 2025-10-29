@@ -2,8 +2,10 @@ import {Console} from "@woowacourse/mission-utils";
 import Lotto from "../Lotto.js";
 
 function validateInputLotto(inputStringLotto) {
+  const trimStringLotto = inputStringLotto.trim();
   const regex = /^[0-9,]+$/;
 
+  if (trimStringLotto.length === 0) throw new Error('[ERROR] 당첨 번호를 입력해야 합니다.');
   if (!regex.test(inputStringLotto)) throw new Error("[ERROR] 당첨 번호는 숫자와 쉼표(,)만을 사용하여 입력해야 합니다.");
   if (inputStringLotto.startsWith(',') || inputStringLotto.endsWith(',') || inputStringLotto.includes(',,')) {
     throw new Error("[ERROR] 쉼표(,)가 올바르게 사용되지 않았습니다. (예: 1,2,3)");
