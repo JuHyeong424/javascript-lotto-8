@@ -1,9 +1,5 @@
 import {Console} from "@woowacourse/mission-utils";
-
-function validateEmpty(bonusString) {
-  const trimBonus = bonusString.trim();
-  if (trimBonus.length === 0) throw new Error('[ERROR] 보너스 번호를 입력해야 합니다.');
-}
+import {validateEmpty} from "./validators.js";
 
 function validateBonus(bonusNumber, pickedLottoNumber) {
   if (isNaN(bonusNumber)) throw new Error('[ERROR] 보너스 번호는 숫자여야 합니다.');
@@ -16,7 +12,7 @@ export async function inputPickedBonusNumber(pickedLottoNumber) {
   while (true) {
     try {
       const bonusString = await Console.readLineAsync('\n보너스 번호를 입력해 주세요.\n');
-      validateEmpty(bonusString);
+      validateEmpty(bonusString, '[ERROR] 보너스 번호를 입력해야 합니다.');
       const bonusNumber = Number(bonusString);
       validateBonus(bonusNumber, pickedLottoNumber);
       return bonusNumber;

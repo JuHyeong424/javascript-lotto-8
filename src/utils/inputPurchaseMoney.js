@@ -1,9 +1,5 @@
 import {Console} from "@woowacourse/mission-utils";
-
-function validateEmpty(moneyString) {
-  const trimMoneyString = moneyString.trim()
-  if (trimMoneyString.length === 0) throw new Error('[ERROR] 구입 금액을 입력해야 합니다.');
-}
+import {validateEmpty} from "./validators.js";
 
 function validateMoney(money) {
   if (isNaN(money)) throw new Error('[ERROR] 구입 금액은 숫자여야 합니다.');
@@ -16,7 +12,7 @@ export async function inputPurchaseMoney() {
   while (true) {
     try {
       const moneyString = await Console.readLineAsync('로또 구입 금액을 입력해주세요.\n');
-      validateEmpty(moneyString);
+      validateEmpty(moneyString, '[ERROR] 구입 금액을 입력해야 합니다.');
       const money = Number(moneyString);
       validateMoney(money);
       return money;
