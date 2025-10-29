@@ -19,7 +19,7 @@ class App {
     printPurchasedLottos(lottoArray);
 
     const pickedLottoNumber = await inputPickedLottoNumber();
-    const pickedBonusNumber = await inputPickedBonusNumber();
+    const pickedBonusNumber = await inputPickedBonusNumber(pickedLottoNumber);
 
     const rankCounts = calculateResults(lottoArray, pickedLottoNumber, pickedBonusNumber);
     printResults(rankCounts);

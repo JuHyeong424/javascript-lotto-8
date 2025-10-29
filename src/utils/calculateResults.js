@@ -1,5 +1,3 @@
-import {Console} from "@woowacourse/mission-utils";
-
 function determineRank(matchCount, hasBonus) {
   if (matchCount === 6) return '1st';
   if (matchCount === 5 && hasBonus) return '2nd';
