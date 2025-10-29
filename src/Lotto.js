@@ -16,7 +16,7 @@ class Lotto {
     if (isOutOfRange) throw new Error('[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.');
 
     const hasNaN = numbers.some((number) => isNaN(number));
-    if (hasNaN) throw new Error('[Error] 로또 번호는 숫자여야 합니다.');
+    if (hasNaN) throw new Error('[ERROR] 로또 번호는 숫자여야 합니다.');
 
     const isNotInteger = numbers.some((number) => !Number.isInteger(number));
     if (isNotInteger) throw new Error('[ERROR] 로또 번호는 정수여야 합니다.');
