@@ -1,6 +1,10 @@
 import Lotto from "../Lotto.js";
 import {WIN_NUMBER_ERROR} from "../constants/errorConstants.js";
-import {LOTTO_NUMBER_PATTERN, COMMA_DELIMITER} from "../constants/characterConstants.js";
+import {
+  LOTTO_NUMBER_PATTERN,
+  COMMA_DELIMITER,
+  REGEX_ALL_WHITESPACE, EMPTY_STRING
+} from "../constants/characterConstants.js";
 import {InputView} from "../view/InputView.js";
 import LottoError from "../error/LottoError.js";
 import {OutputView} from "../view/OutputView.js";
@@ -23,8 +27,9 @@ export async function inputPickedLottoNumber() {
   while (true) {
     try {
       const inputStringLotto = await InputView.readWinningLotto();
-      validateInputLotto(inputStringLotto);
-      const winLottoNumber = inputStringLotto.split(COMMA_DELIMITER.ONE).map(Number);
+      const cleanedInput = inputStringLotto.replace(REGEX_ALL_WHITESPACE, EMPTY_STRING);
+      validateInputLotto(cleanedInput);
+      const winLottoNumber = cleanedInput.split(COMMA_DELIMITER.ONE).map(Number);
 
       new Lotto(winLottoNumber);
 
