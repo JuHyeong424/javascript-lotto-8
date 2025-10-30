@@ -1,8 +1,8 @@
-import {Console} from "@woowacourse/mission-utils";
 import {validateEmpty} from "./validators.js";
-import {INPUT_PURCHASE} from "../constants/inputConstants.js";
 import {PURCHASE_ERROR} from "../constants/errorConstants.js";
 import {LOTTO_PRICE, ZERO} from "../constants/numberConstants.js";
+import {InputView} from "../view/InputView.js";
+import {OutputView} from "../view/OutputView.js";
 
 const { IS_EMPTY, IS_NUMBER, IS_INTEGER, ONLY_POSITIVE_NUMBER, INVALID__AMOUNT_UNIT } = PURCHASE_ERROR;
 
@@ -16,13 +16,13 @@ function validateMoney(money) {
 export async function inputPurchaseMoney() {
   while (true) {
     try {
-      const moneyString = await Console.readLineAsync(INPUT_PURCHASE);
+      const moneyString = await InputView.readPurchaseMoney();
       validateEmpty(moneyString, IS_EMPTY);
       const money = Number(moneyString);
       validateMoney(money);
       return money;
     } catch (error) {
-      Console.print(error.message);
+      OutputView.printError(error);
     }
   }
 }

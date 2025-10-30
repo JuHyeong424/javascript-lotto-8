@@ -1,8 +1,8 @@
-import {Console} from "@woowacourse/mission-utils";
 import Lotto from "../Lotto.js";
-import {INPUT_WIN_LOTTO} from "../constants/inputConstants.js";
 import {WIN_NUMBER_ERROR} from "../constants/errorConstants.js";
 import {LOTTO_NUMBER_PATTERN, COMMA_DELIMITER} from "../constants/characterConstants.js";
+import {InputView} from "../view/InputView.js";
+import {OutputView} from "../view/OutputView.js";
 
 const { IS_EMPTY, INVALID_CHARACTERS, INVALID_COMMA_USAGE } = WIN_NUMBER_ERROR;
 const { ONE, TWO } = COMMA_DELIMITER;
@@ -21,13 +21,13 @@ function validateInputLotto(inputStringLotto) {
 export async function inputPickedLottoNumber() {
   while (true) {
     try {
-      const inputStringLotto = await Console.readLineAsync(INPUT_WIN_LOTTO);
+      const inputStringLotto = await InputView.readWinningLotto();
       validateInputLotto(inputStringLotto);
       const winLottoNumber = inputStringLotto.split(ONE).map(Number);
       new Lotto(winLottoNumber);
       return winLottoNumber;
     } catch (error) {
-      Console.print(error.message);
+      OutputView.printError(error);
     }
   }
 }

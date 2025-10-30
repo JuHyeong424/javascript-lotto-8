@@ -1,7 +1,7 @@
-import {Console} from "@woowacourse/mission-utils";
 import {validateEmpty} from "./validators.js";
 import {BONUS_ERROR} from "../constants/errorConstants.js";
-import {INPUT_BONUS} from "../constants/inputConstants.js";
+import {InputView} from "../view/InputView.js";
+import {OutputView} from "../view/OutputView.js";
 
 const { IS_EMPTY, IS_NUMBER, OUT_OF_RANGE, IS_INTEGER, DUPLICATION } = BONUS_ERROR;
 
@@ -15,13 +15,13 @@ function validateBonus(bonusNumber, pickedLottoNumber) {
 export async function inputPickedBonusNumber(pickedLottoNumber) {
   while (true) {
     try {
-      const bonusString = await Console.readLineAsync(INPUT_BONUS);
+      const bonusString = await InputView.readBonusNumber();
       validateEmpty(bonusString, IS_EMPTY);
       const bonusNumber = Number(bonusString);
       validateBonus(bonusNumber, pickedLottoNumber);
       return bonusNumber;
     } catch (error) {
-      Console.print(error.message);
+      OutputView.printError(error);
     }
   }
 }
