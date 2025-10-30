@@ -13,7 +13,7 @@ export const OutputView = {
   },
   printPurchasedLottos(lottoArray) {
     lottoArray.forEach((lotto) => {
-      const numbers = lotto.getNumbers().join(COMMA_DELIMITER.ONE);
+      const numbers = lotto.getNumbers().join(COMMA_DELIMITER.ONE_EMPTY);
       Console.print(PRINT_PURCHASED_LOTTO(numbers));
     })
   },

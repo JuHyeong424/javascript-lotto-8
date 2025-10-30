@@ -6,4 +6,5 @@ export const EMPTY_STRING = '';
 export const COMMA_DELIMITER = {
   ONE: ',',
   TWO: ',,',
+  ONE_EMPTY: ', ',
 }
