@@ -11,17 +11,14 @@ function determineRank(matchCount, hasBonus) {
   return null;
 }
 
-export function calculateResults(lottoArray, pickedLottoNumber, pickedBonusNumber) {
+export function calculateResults(lottoArray, winningNumbers, pickedBonusNumber) {
   const rankCounts = { [FIRST.rank]: LOTTO_COUNT_ZERO, [SECOND.rank]: LOTTO_COUNT_ZERO, [THIRD.rank]: LOTTO_COUNT_ZERO, [FOURTH.rank]: LOTTO_COUNT_ZERO, [FIFTH.rank]: LOTTO_COUNT_ZERO };
 
   lottoArray.forEach((lotto) => {
-    const myNumbers = lotto.getNumbers();
-
-    const matchCount = myNumbers.filter(number => pickedLottoNumber.includes(number)).length;
-    const hasBonus = myNumbers.includes(pickedBonusNumber);
+    const matchCount = lotto.countMatch(winningNumbers);
+    const hasBonus = lotto.hasBonus(pickedBonusNumber);
 
     const rank = determineRank(matchCount, hasBonus);
-
     if (rank) rankCounts[rank]++;
   });
 
