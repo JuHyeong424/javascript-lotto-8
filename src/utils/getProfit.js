@@ -1,6 +1,4 @@
-import {Console} from "@woowacourse/mission-utils";
 import {LOTTO_RULES} from "../constants/lottoConstants.js";
-import {PRINT_PROFIT} from "../constants/printConstants.js";
 import {PERCENT_HUNDRED, TO_FIXED_ONE} from "../constants/numberConstants.js";
 import {OutputView} from "../view/OutputView.js";
 
