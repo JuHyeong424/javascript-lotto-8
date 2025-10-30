@@ -22,7 +22,8 @@ class App {
 
       const rankCounts = calculateResults(lottoArray, winningNumbers, pickedBonusNumber);
       OutputView.printResults(rankCounts);
-      getProfit(purchaseMoney, rankCounts);
+      const profit = getProfit(purchaseMoney, rankCounts);
+      OutputView.printProfit(profit);
     } catch (error) {
       OutputView.printError(error);
     }

@@ -27,8 +27,8 @@ export const OutputView = {
     Console.print(SECOND);
     Console.print(FIRST);
   },
-  printProfit(roundedProfit) {
-    Console.print(PRINT_PROFIT(roundedProfit));
+  printProfit(profit) {
+    Console.print(PRINT_PROFIT(profit));
   },
   printError(error) {
     Console.print(error.message);
