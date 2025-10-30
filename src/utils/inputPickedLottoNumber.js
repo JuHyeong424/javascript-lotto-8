@@ -12,13 +12,12 @@ import {OutputView} from "../view/OutputView.js";
 const {IS_EMPTY, INVALID_CHARACTERS, INVALID_COMMA_USAGE} = WIN_NUMBER_ERROR;
 const {ONE, TWO} = COMMA_DELIMITER;
 
-function validateInputLotto(inputStringLotto) {
-  const trimStringLotto = inputStringLotto.trim();
+function validateInputLotto(cleanedInputString) {
   const regex = LOTTO_NUMBER_PATTERN;
 
-  if (trimStringLotto.length === 0) throw new LottoError(IS_EMPTY);
-  if (!regex.test(inputStringLotto)) throw new LottoError(INVALID_CHARACTERS);
-  if (inputStringLotto.startsWith(ONE) || inputStringLotto.endsWith(ONE) || inputStringLotto.includes(TWO)) {
+  if (cleanedInputString.length === 0) throw new LottoError(IS_EMPTY);
+  if (!regex.test(cleanedInputString)) throw new LottoError(INVALID_CHARACTERS);
+  if (cleanedInputString.startsWith(ONE) || cleanedInputString.endsWith(ONE) || cleanedInputString.includes(TWO)) {
     throw new LottoError(INVALID_COMMA_USAGE);
   }
 }
