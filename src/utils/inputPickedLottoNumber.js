@@ -3,6 +3,7 @@ import {WIN_NUMBER_ERROR} from "../constants/errorConstants.js";
 import {LOTTO_NUMBER_PATTERN, COMMA_DELIMITER} from "../constants/characterConstants.js";
 import {InputView} from "../view/InputView.js";
 import LottoError from "../error/LottoError.js";
+import {OutputView} from "../view/OutputView.js";
 
 const {IS_EMPTY, INVALID_CHARACTERS, INVALID_COMMA_USAGE} = WIN_NUMBER_ERROR;
 const {ONE, TWO} = COMMA_DELIMITER;
@@ -19,9 +20,17 @@ function validateInputLotto(inputStringLotto) {
 }
 
 export async function inputPickedLottoNumber() {
-  const inputStringLotto = await InputView.readWinningLotto();
-  validateInputLotto(inputStringLotto);
-  const winLottoNumber = inputStringLotto.split(ONE).map(Number);
-  new Lotto(winLottoNumber);
-  return winLottoNumber;
+  while (true) {
+    try {
+      const inputStringLotto = await InputView.readWinningLotto();
+      validateInputLotto(inputStringLotto);
+      const winLottoNumber = inputStringLotto.split(COMMA_DELIMITER.ONE).map(Number);
+
+      new Lotto(winLottoNumber);
+
+      return winLottoNumber;
+    } catch (error) {
+      OutputView.printError(error);
+    }
+  }
 }

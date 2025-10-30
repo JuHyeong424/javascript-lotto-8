@@ -3,6 +3,7 @@ import {PURCHASE_ERROR} from "../constants/errorConstants.js";
 import {LOTTO_PRICE, ZERO} from "../constants/numberConstants.js";
 import {InputView} from "../view/InputView.js";
 import LottoError from "../error/LottoError.js";
+import {OutputView} from "../view/OutputView.js";
 
 const {IS_EMPTY, IS_NUMBER, IS_INTEGER, ONLY_POSITIVE_NUMBER, INVALID__AMOUNT_UNIT} = PURCHASE_ERROR;
 
@@ -14,9 +15,16 @@ function validateMoney(money) {
 }
 
 export async function inputPurchaseMoney() {
-  const moneyString = await InputView.readPurchaseMoney();
-  validateEmpty(moneyString, IS_EMPTY);
-  const money = Number(moneyString);
-  validateMoney(money);
-  return money;
+  while (true) {
+    try {
+      const moneyString = await InputView.readPurchaseMoney();
+      validateEmpty(moneyString, IS_EMPTY);
+      const money = Number(moneyString);
+      validateMoney(money);
+
+      return money;
+    } catch (error) {
+      OutputView.printError(error);
+    }
+  }
 }

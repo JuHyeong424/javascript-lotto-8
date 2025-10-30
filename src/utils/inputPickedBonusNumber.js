@@ -2,6 +2,7 @@ import {validateEmpty} from "./validators.js";
 import {BONUS_ERROR} from "../constants/errorConstants.js";
 import {InputView} from "../view/InputView.js";
 import LottoError from "../error/LottoError.js";
+import {OutputView} from "../view/OutputView.js";
 
 const {IS_EMPTY, IS_NUMBER, OUT_OF_RANGE, IS_INTEGER, DUPLICATION} = BONUS_ERROR;
 
@@ -13,9 +14,15 @@ function validateBonus(bonusNumber, pickedLottoNumber) {
 }
 
 export async function inputPickedBonusNumber(pickedLottoNumber) {
-  const bonusString = await InputView.readBonusNumber();
-  validateEmpty(bonusString, IS_EMPTY);
-  const bonusNumber = Number(bonusString);
-  validateBonus(bonusNumber, pickedLottoNumber);
-  return bonusNumber;
+  while (true) {
+    try {
+      const bonusString = await InputView.readBonusNumber();
+      validateEmpty(bonusString, IS_EMPTY);
+      const bonusNumber = Number(bonusString);
+      validateBonus(bonusNumber, pickedLottoNumber);
+      return bonusNumber;
+    } catch (error) {
+      OutputView.printError(error);
+    }
+  }
 }
