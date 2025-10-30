@@ -8,12 +8,13 @@ import {inputPickedBonusNumber} from "./utils/inputPickedBonusNumber.js";
 import {printResults} from "./utils/printResults.js";
 import {Console} from "@woowacourse/mission-utils";
 import {printPurchasedLottos} from "./utils/printPurchasedLottos.js";
+import {PRINT_PURCHASE_AMOUNT} from "./constants/printConstants.js";
 
 class App {
   async run() {
     const purchaseMoney = await inputPurchaseMoney();
     const purchaseAmount = getPurchaseAmount(purchaseMoney);
-    Console.print(`\n${purchaseAmount}개를 구매했습니다.`);
+    Console.print(PRINT_PURCHASE_AMOUNT(purchaseAmount));
 
     const lottoArray = getLotto(purchaseAmount);
     printPurchasedLottos(lottoArray);

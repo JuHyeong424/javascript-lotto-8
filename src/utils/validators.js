@@ -1,4 +1,6 @@
+import {ZERO} from "../constants/numberConstants.js";
+
 export function validateEmpty(inputString, errorMessage) {
   const trimInputString = inputString.trim()
-  if (trimInputString.length === 0) throw new Error(errorMessage);
+  if (trimInputString.length === ZERO) throw new Error(errorMessage);
 }

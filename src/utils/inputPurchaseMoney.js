@@ -1,18 +1,23 @@
 import {Console} from "@woowacourse/mission-utils";
 import {validateEmpty} from "./validators.js";
+import {INPUT_PURCHASE} from "../constants/inputConstants.js";
+import {PURCHASE_ERROR} from "../constants/errorConstants.js";
+import {LOTTO_PRICE, ZERO} from "../constants/numberConstants.js";
+
+const { IS_EMPTY, IS_NUMBER, IS_INTEGER, ONLY_POSITIVE_NUMBER, INVALID__AMOUNT_UNIT } = PURCHASE_ERROR;
 
 function validateMoney(money) {
-  if (isNaN(money)) throw new Error('[ERROR] 구입 금액은 숫자여야 합니다.');
-  if (!Number.isInteger(money)) throw new Error('[ERROR] 구입 금액은 정수여야 합니다.');
-  if (money <= 0) throw new Error('[ERROR] 구입 금액은 양수여야 합니다.');
-  if (money % 1000 !== 0) throw new Error('[ERROR] 구입 금액을 1,000원 단위여야 합니다.');
+  if (isNaN(money)) throw new Error(IS_NUMBER);
+  if (!Number.isInteger(money)) throw new Error(IS_INTEGER);
+  if (money <= ZERO) throw new Error(ONLY_POSITIVE_NUMBER);
+  if (money % LOTTO_PRICE !== ZERO) throw new Error(INVALID__AMOUNT_UNIT);
 }
 
 export async function inputPurchaseMoney() {
   while (true) {
     try {
-      const moneyString = await Console.readLineAsync('로또 구입 금액을 입력해주세요.\n');
-      validateEmpty(moneyString, '[ERROR] 구입 금액을 입력해야 합니다.');
+      const moneyString = await Console.readLineAsync(INPUT_PURCHASE);
+      validateEmpty(moneyString, IS_EMPTY);
       const money = Number(moneyString);
       validateMoney(money);
       return money;

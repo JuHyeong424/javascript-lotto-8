@@ -1,14 +1,18 @@
+import {LOTTO_COUNT_ZERO, LOTTO_RULES} from "../constants/lottoConstants.js";
+
+const { FIRST, SECOND, THIRD, FOURTH, FIFTH } = LOTTO_RULES;
+
 function determineRank(matchCount, hasBonus) {
-  if (matchCount === 6) return '1st';
-  if (matchCount === 5 && hasBonus) return '2nd';
-  if (matchCount === 5) return '3rd';
-  if (matchCount === 4) return '4th';
-  if (matchCount === 3) return '5th';
+  if (matchCount === FIRST.matchCount) return FIRST.rank;
+  if (matchCount === SECOND.matchCount && hasBonus) return SECOND.rank;
+  if (matchCount === THIRD.matchCount) return THIRD.rank;
+  if (matchCount === FOURTH.matchCount) return FOURTH.rank;
+  if (matchCount === FIFTH.matchCount) return FIFTH.rank;
   return null;
 }
 
 export function calculateResults(lottoArray, pickedLottoNumber, pickedBonusNumber) {
-  const rankCounts = { '1st': 0, '2nd': 0, '3rd': 0, '4th': 0, '5th': 0 };
+  const rankCounts = { [FIRST.rank]: LOTTO_COUNT_ZERO, [SECOND.rank]: LOTTO_COUNT_ZERO, [THIRD.rank]: LOTTO_COUNT_ZERO, [FOURTH.rank]: LOTTO_COUNT_ZERO, [FIFTH.rank]: LOTTO_COUNT_ZERO };
 
   lottoArray.forEach((lotto) => {
     const myNumbers = lotto.getNumbers();

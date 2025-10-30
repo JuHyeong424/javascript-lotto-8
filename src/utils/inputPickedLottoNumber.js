@@ -1,23 +1,29 @@
 import {Console} from "@woowacourse/mission-utils";
 import Lotto from "../Lotto.js";
+import {INPUT_WIN_LOTTO} from "../constants/inputConstants.js";
+import {WIN_NUMBER_ERROR} from "../constants/errorConstants.js";
+import {LOTTO_NUMBER_PATTERN, COMMA_DELIMITER} from "../constants/characterConstants.js";
+
+const { IS_EMPTY, INVALID_CHARACTERS, INVALID_COMMA_USAGE } = WIN_NUMBER_ERROR;
+const { ONE, TWO } = COMMA_DELIMITER;
 
 function validateInputLotto(inputStringLotto) {
   const trimStringLotto = inputStringLotto.trim();
-  const regex = /^[0-9,]+$/;
+  const regex = LOTTO_NUMBER_PATTERN;
 
-  if (trimStringLotto.length === 0) throw new Error('[ERROR] 당첨 번호를 입력해야 합니다.');
-  if (!regex.test(inputStringLotto)) throw new Error('[ERROR] 당첨 번호는 숫자와 쉼표(,)만을 사용하여 입력해야 합니다.');
-  if (inputStringLotto.startsWith(',') || inputStringLotto.endsWith(',') || inputStringLotto.includes(',,')) {
-    throw new Error('[ERROR] 쉼표(,)가 올바르게 사용되지 않았습니다. (예: 1,2,3)');
+  if (trimStringLotto.length === 0) throw new Error(IS_EMPTY);
+  if (!regex.test(inputStringLotto)) throw new Error(INVALID_CHARACTERS);
+  if (inputStringLotto.startsWith(ONE) || inputStringLotto.endsWith(ONE) || inputStringLotto.includes(TWO)) {
+    throw new Error(INVALID_COMMA_USAGE);
   }
 }
 
 export async function inputPickedLottoNumber() {
   while (true) {
     try {
-      const inputStringLotto = await Console.readLineAsync('\n당첨 번호를 입력해 주세요.\n');
+      const inputStringLotto = await Console.readLineAsync(INPUT_WIN_LOTTO);
       validateInputLotto(inputStringLotto);
-      const winLottoNumber = inputStringLotto.split(',').map(Number);
+      const winLottoNumber = inputStringLotto.split(ONE).map(Number);
       new Lotto(winLottoNumber);
       return winLottoNumber;
     } catch (error) {
