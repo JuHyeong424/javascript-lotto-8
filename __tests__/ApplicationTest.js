@@ -1,5 +1,5 @@
 import App from "../src/App.js";
-import {getLogSpy, mockQuestions, mockRandoms} from "./testUtils.js";
+import {getLogSpy, mockQuestions, mockRandoms} from "../src/utils/testUtils.js";
 
 const INPUT_NUMBERS_TO_END = ["1000", "1,2,3,4,5,6", "7"];
 

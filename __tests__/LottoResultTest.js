@@ -1,4 +1,4 @@
-import {getLogSpy, mockQuestions, mockRandoms} from "./testUtils.js";
+import {getLogSpy, mockQuestions, mockRandoms} from "../src/utils/testUtils.js";
 import App from "../src/App.js";
 
 describe("로또 기능 실행 테스트", () => {
