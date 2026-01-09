@@ -1,6 +1,6 @@
 import {inputPurchaseAmount, inputWinningBonusNumber, inputWinningNumber} from "./view/inputView.js";
 import {purchaseAmountCount} from "./utils/purchaseAmountCount.js";
-import {printPurchaseList} from "./view/outputView.js";
+import {printPurchaseList, printWinningStatics} from "./view/outputView.js";
 import {getWinningStatics} from "./utils/getWinningStatics.js";
 import {getProfitPercent} from "./utils/getProfitPercent.js";
 
@@ -13,6 +13,7 @@ class App {
     const winningBonusNumber = await inputWinningBonusNumber();
     const WINNING_COUNT = getWinningStatics(purchaseResultArray, winningNumber, winningBonusNumber);
     const profitPercent = getProfitPercent(WINNING_COUNT, purchaseAmount);
+    await printWinningStatics(WINNING_COUNT, profitPercent);
   }
 }
 

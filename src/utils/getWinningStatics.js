@@ -36,18 +36,3 @@ export function getWinningStatics(purchaseResultArray, winningNumber, winningBon
   }
   return WINNING_COUNT;
 }
-
-/*
-[ 14, 12, 23, 19, 18, 25 ]
-[ 4, 6, 11, 3, 8, 10 ]
-[ 1, 32, 36, 30, 12, 29 ]
-[ 4, 24, 13, 34, 25, 44 ]
-[ 6, 35, 28, 39, 40, 43 ]
-[ 7, 36, 43, 15, 9, 44 ]
-[ 3, 32, 28, 13, 45, 5 ]
-[ 2, 22, 37, 32, 5, 19 ]
-
-1,2,3,4,5,6
-
-7
- */
