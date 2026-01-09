@@ -3,6 +3,7 @@ import {purchaseAmountCount} from "./utils/purchaseAmountCount.js";
 import {printPurchaseList, printWinningStatics} from "./view/outputView.js";
 import {getWinningStatics} from "./utils/getWinningStatics.js";
 import {getProfitPercent} from "./utils/getProfitPercent.js";
+import Lotto from "./Lotto.js";
 
 class App {
   async run() {
